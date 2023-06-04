@@ -6,3 +6,8 @@
 //
 
 import Foundation
+
+class StartViewModel: ObservableObject {
+    @Published var name = ""
+    @Published var name2 = ""
+}

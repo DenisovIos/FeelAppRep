@@ -8,14 +8,43 @@
 import SwiftUI
 
 struct StartView: View {
+    @StateObject var model = StartViewModel()
     var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundColor(.accentColor)
-            Text("Hello, world!")
+        VStack{
+            HStack{
+                Button {
+                    print("menu")
+                } label: {
+                    Image(systemName: "line.3.horizontal")
+                        .foregroundColor(.purple)
+                }
+                Spacer()
+                Text("Ваши имена")
+                Spacer()
+            }
+            .padding(20)
+            Spacer()
+            VStack(alignment: .center, spacing: 20) {
+                
+                TextFieldElement(name: $model.name)
+                TextFieldElement(name: $model.name2, sex: false, text: "Введите имя второго игрока")
+                Button {
+                    print("Hачать игру")
+                } label: {
+                    Text("Начать игру")
+                }
+                .padding(6)
+                .frame(maxWidth: .infinity)
+                .frame(height: 40)
+                .foregroundColor(.black)
+                .background(.purple)
+                .cornerRadius(10)
+                
+
+            }
+            .padding(20)
+            Spacer()
         }
-        .padding()
     }
 }
 
