@@ -10,41 +10,50 @@ import SwiftUI
 struct StartView: View {
     @StateObject var model = StartViewModel()
     var body: some View {
-        VStack{
-            HStack{
-                Button {
-                    print("menu")
-                } label: {
-                    Image(systemName: "line.3.horizontal")
-                        .foregroundColor(.purple)
+        ZStack{
+                LeftMenuView()
+            VStack{
+                HStack{
+                    Button {
+                        model.menuOpen.toggle()
+                    } label: {
+                        Image(systemName: "line.3.horizontal")
+                            .foregroundColor(.purple)
+                    }
+                    Spacer()
+                    Text("Ваши имена")
+                    Spacer()
                 }
+                .padding(20)
                 Spacer()
-                Text("Ваши имена")
+                VStack(alignment: .center, spacing: 20) {
+                    
+                    TextFieldElement(name: $model.name)
+                    TextFieldElement(name: $model.name2, sex: false, text: "Введите имя второго игрока")
+                    Button {
+                        print("Hачать игру")
+                    } label: {
+                        Text("Начать игру")
+                    }
+                    .padding(6)
+                    .frame(maxWidth: .infinity)
+                    .frame(height: 40)
+                    .foregroundColor(.black)
+                    .background(.purple)
+                    .cornerRadius(10)
+                    
+                    
+                }
+                .padding(20)
                 Spacer()
             }
-            .padding(20)
-            Spacer()
-            VStack(alignment: .center, spacing: 20) {
-                
-                TextFieldElement(name: $model.name)
-                TextFieldElement(name: $model.name2, sex: false, text: "Введите имя второго игрока")
-                Button {
-                    print("Hачать игру")
-                } label: {
-                    Text("Начать игру")
-                }
-                .padding(6)
-                .frame(maxWidth: .infinity)
-                .frame(height: 40)
-                .foregroundColor(.black)
-                .background(.purple)
-                .cornerRadius(10)
-                
-
-            }
-            .padding(20)
-            Spacer()
+            .frame(maxWidth: .infinity, maxHeight: .infinity)
+            .background(.gray)
+            .offset(x: model.menuOpen ? 250 : 0)
+            .shadow(radius: model.menuOpen ? 10 : 0)
+            .blur(radius: model.menuOpen ? 2 : 0)
         }
+        .animation(.spring(response: 0.2, dampingFraction: 0.9, blendDuration: 0.4), value: model.menuOpen)
     }
 }
 
