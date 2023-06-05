@@ -29,7 +29,7 @@ struct StartView: View {
                 VStack(alignment: .center, spacing: 20) {
                     
                     TextFieldElement(name: $model.name)
-                    TextFieldElement(name: $model.name2, sex: false, text: "Введите имя второго игрока")
+                    TextFieldElement(name: $model.name2, sex: false)
                     Button {
                         print("Hачать игру")
                     } label: {
@@ -48,10 +48,9 @@ struct StartView: View {
                 Spacer()
             }
             .frame(maxWidth: .infinity, maxHeight: .infinity)
-            .background(.gray)
+            .background(.black)
             .offset(x: model.menuOpen ? 250 : 0)
             .shadow(radius: model.menuOpen ? 10 : 0)
-            .blur(radius: model.menuOpen ? 2 : 0)
         }
         .animation(.spring(response: 0.2, dampingFraction: 0.9, blendDuration: 0.4), value: model.menuOpen)
     }

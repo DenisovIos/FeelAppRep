@@ -10,31 +10,38 @@ import SwiftUI
 struct TextFieldElement: View {
     @Binding var name : String
     @State var sex = true
-    var text = "Введите имя первого игрока"
+    var text = "Имя игрока"
     var body: some View {
         ZStack{
-            RoundedRectangle(cornerRadius: 6)
-                .strokeBorder(Color.black, lineWidth: 1)
+            RoundedRectangle(cornerRadius: 20)
+                .strokeBorder(Color.purple, lineWidth: 1)
+                .background(RoundedRectangle(
+                    cornerRadius: 20).foregroundColor(.gray))
             HStack{
                 Button {
                     sex.toggle()
                 } label: {
                     Image(sex ? "male" : "female").resizable()
                         .scaledToFit()
-                        .frame(width: 20)
+                        .frame(width: 30)
                         .padding(10)
-                        .background(.black)
+                        .background(.purple)
                 }
+                .cornerRadius(17)
+                .padding(5)
                 
                 TextField(text, text: $name)
                     .padding(5)
+                    .font(.custom("Gilroy-Regular", size: 20))
+                    .foregroundColor(.black)
+                    .textFieldStyle(.plain)
                 
             }
-            .cornerRadius(6)
+            
             
             
         }
-        .frame(maxHeight: 40 )
+        .frame(maxHeight: 60 )
     }
 }
 
